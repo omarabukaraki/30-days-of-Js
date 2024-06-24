@@ -88,7 +88,7 @@ pR.style.cssText = ' font-size: 20px;color: white;padding: 12px 100px;background
 let result;
 btn.onclick = function(){
   if(inputFeild.value !== '' && parseInt(inputFeild.value)){
-    h1Kilo.textContent  = parseInt(inputFeild.value) *selectedG;
+    h1Kilo.textContent  = `${parseInt(inputFeild.value) *selectedG}.00 N`;
     info.style.display= 'flex';
     span.textContent = select.value;
     imgTage.setAttribute('src',seletedImage);
