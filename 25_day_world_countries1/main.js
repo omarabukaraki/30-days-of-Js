@@ -1,30 +1,30 @@
-import {countries_data} from '../countries_data.js';
+import { countries_data } from '../countries_data.js';
 
 
 
 let spokenLanguage = {};
 
-countries_data.forEach(country=>{
-    country.languages.forEach(language=>{
-        if(spokenLanguage[language]){
+countries_data.forEach(country => {
+    country.languages.forEach(language => {
+        if (spokenLanguage[language]) {
             spokenLanguage[language]++;
-        }else{
+        } else {
             spokenLanguage[language] = 1;
         }
     })
 });
-let mostSpokenLanguage = Object.entries(spokenLanguage).sort((a,b)=>b[1]-a[1]).slice(0,10);
+let mostSpokenLanguage = Object.entries(spokenLanguage).sort((a, b) => b[1] - a[1]).slice(0, 10);
 
 
-let countriesPopulation = countries_data.map((country)=>{
-   return {name:country.name,population:country.population};
+let countriesPopulation = countries_data.map((country) => {
+    return { name: country.name, population: country.population };
 });
-let tenCountriesPopulation = countriesPopulation.sort((a,b)=>b.population - a.population).slice(0,10);
+let tenCountriesPopulation = countriesPopulation.sort((a, b) => b.population - a.population).slice(0, 10);
 
 
-let totalEntirePopulation = countriesPopulation.reduce((pV,cV)=>{
+let totalEntirePopulation = countriesPopulation.reduce((pV, cV) => {
     return pV + cV.population;
-},0);
+}, 0);
 
 
 
@@ -35,7 +35,7 @@ document.querySelector('body').style.margin = '0px';
 
 //start head 
 const headDiv = document.querySelector('.head');
-headDiv.style.cssText ='background:#f0f0f2;padding:30px 0px;display:flex;flex-direction:column;align-items: center;';
+headDiv.style.cssText = 'background:#f0f0f2;padding:30px 0px;display:flex;flex-direction:column;align-items: center;';
 
 const headTitle = document.querySelector('.head h3');
 headTitle.style.cssText = 'font-size:60px;margin:0;font-weight: 500;color:#f2a93b';
@@ -65,9 +65,9 @@ selectDescription.style.cssText = 'color:#5e5e5f;font-size:24px;margin:20px 0px 
 
 
 // start calculate percentage function
-function calculatePercentage(country){
+function calculatePercentage(country) {
     let thDifference = totalEntirePopulation - country.population;
-    let resultOfDivision =  country.population / thDifference;
+    let resultOfDivision = country.population / thDifference;
     let result = resultOfDivision * 100;
     return result;
 }
@@ -90,55 +90,55 @@ const number = document.querySelector('.number');
 number.style.cssText = 'width: 25%;padding-left: 16px;font-size: 22px;color: #5e5e5f;';
 
 
-popBtn.addEventListener('click',()=>{
-   displayResult('population');
+popBtn.addEventListener('click', () => {
+    displayResult('population');
 });
 
-langBtn.addEventListener('click',()=>{
+langBtn.addEventListener('click', () => {
     displayResult('language');
- });
+});
 
 
-  function displayResult(type){
-    if(type === 'population'){
-       selectDescription.textContent = '10 Most population countries in the world';
+function displayResult(type) {
+    if (type === 'population') {
+        selectDescription.textContent = '10 Most population countries in the world';
 
-       resultDiv.innerHTML = '';
-       let copyContainer = container.cloneNode(true);
-       copyContainer.firstElementChild.textContent = 'World';
-       copyContainer.lastElementChild.textContent = totalEntirePopulation;
-       copyContainer.children[1].children[0].style.cssText = `width:${100}%`;
-       resultDiv.append(copyContainer);
-
-
-       tenCountriesPopulation.forEach((tCP)=>{
+        resultDiv.innerHTML = '';
         let copyContainer = container.cloneNode(true);
-          copyContainer.firstElementChild.textContent = tCP.name;
-          copyContainer.lastElementChild.textContent = tCP.population;
-          copyContainer.children[1].children[0].style.cssText = `width:${calculatePercentage(tCP)}%`;
-          resultDiv.append(copyContainer);
-      });
+        copyContainer.firstElementChild.textContent = 'World';
+        copyContainer.lastElementChild.textContent = totalEntirePopulation;
+        copyContainer.children[1].children[0].style.cssText = `width:${100}%`;
+        resultDiv.append(copyContainer);
+
+
+        tenCountriesPopulation.forEach((tCP) => {
+            let copyContainer = container.cloneNode(true);
+            copyContainer.firstElementChild.textContent = tCP.name;
+            copyContainer.lastElementChild.textContent = tCP.population;
+            copyContainer.children[1].children[0].style.cssText = `width:${calculatePercentage(tCP)}%`;
+            resultDiv.append(copyContainer);
+        });
     }
-    else{
-      selectDescription.textContent = '10 Most Spoken languages in the world';
-         
-       resultDiv.innerHTML = '';
-        mostSpokenLanguage.forEach((mSL)=>{
+    else {
+        selectDescription.textContent = '10 Most Spoken languages in the world';
+
+        resultDiv.innerHTML = '';
+        mostSpokenLanguage.forEach((mSL) => {
             let copyContainer = container.cloneNode(true);
             copyContainer.firstElementChild.textContent = mSL[0];
             copyContainer.lastElementChild.textContent = mSL[1];
             copyContainer.children[1].children[0].style.cssText = `width:${mSL[1]}%`;
             resultDiv.append(copyContainer);
-          });
+        });
     }
-  }
+}
 
-  displayResult('population');
+displayResult('population');
 // end result section
-     
 
 
 
 
- 
+
+
 
