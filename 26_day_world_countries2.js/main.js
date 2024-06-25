@@ -139,6 +139,7 @@ buttons[2].onclick = function () {
                 isClicked = !isClicked;
         }
         isClicked = !isClicked;
+        inputFelid.value = '';
         buttons[0].style.cssText = 'background-color: #895be6;';
         buttons[1].style.cssText = 'background-color: #895be6;';
         buttons[2].style.cssText = 'background-color: #581cb9;';
