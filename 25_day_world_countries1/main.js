@@ -106,7 +106,7 @@ function displayResult(type) {
         resultDiv.innerHTML = '';
         let copyContainer = container.cloneNode(true);
         copyContainer.firstElementChild.textContent = 'World';
-        copyContainer.lastElementChild.textContent = totalEntirePopulation;
+        copyContainer.lastElementChild.textContent = totalEntirePopulation.toLocaleString();
         copyContainer.children[1].children[0].style.cssText = `width:${100}%`;
         resultDiv.append(copyContainer);
 
@@ -114,7 +114,7 @@ function displayResult(type) {
         tenCountriesPopulation.forEach((tCP) => {
             let copyContainer = container.cloneNode(true);
             copyContainer.firstElementChild.textContent = tCP.name;
-            copyContainer.lastElementChild.textContent = tCP.population;
+            copyContainer.lastElementChild.textContent = tCP.population.toLocaleString();
             copyContainer.children[1].children[0].style.cssText = `width:${calculatePercentage(tCP)}%`;
             resultDiv.append(copyContainer);
         });
