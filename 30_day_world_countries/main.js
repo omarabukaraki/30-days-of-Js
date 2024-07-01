@@ -15,8 +15,6 @@ const container = document.querySelector('.container');
 
 let searchText = '';
 
-
-
 let spokenLanguage = {};
 
 newCountriesData.forEach(country => {
@@ -138,7 +136,6 @@ function createFlagsBySearch(countriesData, searchValue) {
         }
 
 
-
         resultDiv.innerHTML = '';
         let copyContainer = container.cloneNode(true);
         copyContainer.firstElementChild.textContent = 'World';
@@ -182,10 +179,6 @@ ICreatedBy.onclick = () => {
 };
 
 
-
-
-
-
 function calculatePercentage(country) {
         let thDifference = totalEntirePopulation - country.population;
         let resultOfDivision = country.population / thDifference;
@@ -194,17 +187,17 @@ function calculatePercentage(country) {
 }
 
 popBtn.addEventListener('click', () => {
-        // displayResult('population');
+        displayResult('population');
 });
 
 langBtn.addEventListener('click', () => {
-        // displayResult('language');
+        displayResult('language');
 });
 
 
 function displayResult(type) {
         if (type === 'population') {
-                selectDescription.textContent = '10 Most population countries in the world';
+                selectDescription.textContent = 'World population';
 
                 resultDiv.innerHTML = '';
                 let copyContainer = container.cloneNode(true);
@@ -223,7 +216,7 @@ function displayResult(type) {
                 });
         }
         else {
-                selectDescription.textContent = '10 Most Spoken languages in the world';
+                selectDescription.textContent = 'world languages';
                 resultDiv.innerHTML = '';
                 mostSpokenLanguage.forEach((mSL) => {
                         let copyContainer = container.cloneNode(true);
