@@ -100,6 +100,30 @@ fromPlayerButton.onclick = function (event) {
 
 };
 
+
+
+function checkForm(){
+    let isNumber = isNaN(fromPlayerInput[3].value) !== true;
+    let validInput =0;
+    fromPlayerInput.forEach((input)=>{
+        if(input.value !== ''){
+            validInput++;
+        }
+    });
+    if(fromPlayerInput.length === validInput && isNumber){
+        fromPlayerButton.style.cssText = 'background-color: rgb(241 162 150);width: 16%;height: 44px;margin: 0;border: none;color: white;';
+    }else{
+        fromPlayerButton.style.cssText = 'background-color: #e5c9c5;width: 16%;height: 44px;margin: 0;border: none;color: white;';
+    }
+}
+
+
+fromPlayerInput.forEach((input)=>{
+    input.addEventListener('input',()=>{
+        checkForm()
+    })
+});
+
 function getAndCreate() {
     playersScore.innerHTML = '';
 
