@@ -119,22 +119,25 @@ function createFlagsBySearch(countriesData, searchValue) {
         resultDiv.innerHTML = '';
 
         let dataSet = new Set();
-        if (searchValue !== undefined) {
-                countriesData.forEach((ele) => {
-                        if (ele.name.toLowerCase().includes(searchValue)) {
-                                dataSet.add(ele.name);
-                        } else if (ele.capital !== undefined && ele.capital.toLowerCase().includes(searchValue)) {
-                                dataSet.add(ele.name);
-                        } else {
-                                ele.languages.forEach((lang) => {
-                                        if (lang.toLowerCase().includes(searchValue)) {
-                                                dataSet.add(ele.name);
-                                        }
-                                });
-                        }
-                });
-        }
+        const searchData = searchValue.split(',');
+        searchData.forEach((searchValue) => {
+                if (searchValue !== '') {
+                        countriesData.forEach((ele) => {
+                                if (ele.name.toLowerCase().includes(searchValue.trim())) {
+                                        dataSet.add(ele.name);
+                                } else if (ele.capital !== undefined && ele.capital.toLowerCase().includes(searchValue.trim())) {
+                                        dataSet.add(ele.name);
+                                } else {
+                                        ele.languages.forEach((lang) => {
+                                                if (lang.toLowerCase().includes(searchValue.trim())) {
+                                                        dataSet.add(ele.name);
+                                                }
+                                        });
+                                }
+                        });
+                }
 
+        })
 
         resultDiv.innerHTML = '';
         let copyContainer = container.cloneNode(true);
@@ -152,7 +155,6 @@ function createFlagsBySearch(countriesData, searchValue) {
                         flagCartCopy.children[3].textContent = `Language: ${countries.languages.join(', ')}`;
                         flagCartCopy.children[4].textContent = `Population: ${countries.population.toLocaleString()}`;
                         displayData.append(flagCartCopy);
-
 
                         let copyContainer = container.cloneNode(true);
                         copyContainer.firstElementChild.textContent = countries.name;

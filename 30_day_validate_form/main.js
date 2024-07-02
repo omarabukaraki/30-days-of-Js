@@ -85,8 +85,7 @@ function validateFormData(){
     checkPassword();
     
     function checkTelephone(){
-        // telephone.value.match('^\d{3}-\d{3}-\d{4}$') === null
-        if(false){
+        if(telephone.value.match('([0-9]{11})') === null){
             telephoneH3.style.display = 'block';
         }else{
             telephoneH3.style.display = 'none';
@@ -106,4 +105,5 @@ function validateFormData(){
     checkBio();
     return index === 6;
 }
+
 
